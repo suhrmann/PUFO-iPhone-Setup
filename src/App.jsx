@@ -179,7 +179,7 @@ function App() {
             </DeviceFrameset>
             <div style={{ fontSize: 'x-small' }}>
                 <br/>
-                Webentwicklung: SUhrmann, Idee und Sound: Florentin Will, <a href="https://www.daspodcastufo.com">DAS PODCAST UFO</a>, Episode <i>UFO476 Nano</i>, (c) iPhone Apple Inc.
+                Webentwicklung: SUhrmann - Sound: Florentin Will, <a href="https://www.daspodcastufo.com">DAS PODCAST UFO</a>, Episode <i>UFO476 Nano</i> - (c) iPhone Apple Inc.
             </div>
         </div>
     );
