@@ -174,7 +174,7 @@ function App() {
             <DeviceFrameset device="iPhone X" color="black" landscape={false}>
                 <div className="app-content">
                     {screens[currentScreen]}
-                    <audio ref={audioRef} src="/UFO476_Nano_manche_moegen_das.mp3" preload="auto" />
+                    <audio ref={audioRef} src={`${import.meta.env.BASE_URL}UFO476_Nano_manche_moegen_das.mp3`} preload="auto" />
                 </div>
             </DeviceFrameset>
             <div style={{ fontSize: 'x-small' }}>
