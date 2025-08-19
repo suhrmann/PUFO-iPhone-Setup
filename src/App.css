@@ -1,12 +1,138 @@
+/**
+ * import from Google Fonts
+ */
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+CA&display=swap');
+
+
+/* background and center device */
 #root {
     height: 100vh;
     width: 100vw;
     text-align: center;
     background: linear-gradient(125deg, hsla(160.24,44.57%,63.92%,1) 0%, hsla(332.2,44.57%,63.92%,1) 100%);
-
 }
 
-/* Main wrapper - this centers the device */
+/**
+ * Styles
+ */
+
 .app-wrapper {
+    font-size: 125%;
+}
+
+.app-content {
+    height: 100%;
+    width: 100%;
+}
+
+.app-content {
+    padding: 10px;
+}
+
+button {
+    background: #007AFF;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    margin: 8px;
+    cursor: pointer;
+    width: 310px;  /* full phone width */
+    min-width: 150px;
+}
+
+h1.hallo {
+    font-family: Playwrite CA, serif;
+}
+
+.line-1_5 {  /* manche moegen das */
+    line-height: 1.5em;
+}
+
+.screen-centered {
+    height: 100%;              /* fill the device screen */
+    display: flex;
+    justify-content: center;   /* horizontal */
+    align-items: center;       /* vertical */
+}
+
+/********
+ * Siri
+ */
+.screen-centered {
+    position: relative;          /* allow absolute positioning inside */
+    height: 100%;                /* fill the device screen */
+    display: flex;
+    justify-content: center;     /* center text horizontally */
+    align-items: center;         /* center text vertically */
     text-align: center;
+    overflow: hidden;            /* hide overflow from blobs */
+}
+
+/* Siri animation container at bottom */
+.siri-circle {
+    position: absolute;
+    bottom: 50px;                /* distance from bottom */
+    left: 35%;
+    transform: translateX(-50%); /* center horizontally */
+    width: 400px;
+    height: 100px;               /* shorter height since it's at bottom */
+    z-index: 0;                  /* behind text */
+    pointer-events: none;        /* clicks pass through */
+}
+
+.siri-circle span {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    /* Sharper gradient: solid color until ~60%, then fade */
+    background: radial-gradient(circle at center,
+    rgba(0,122,255,0.95) 0%,
+    rgba(0,122,255,0.85) 70%,
+    rgba(0,122,255,0.2) 95%,
+    transparent 100%);
+    opacity: 0.9;
+    animation: pulse 6s ease-in-out infinite;
+    mix-blend-mode: screen;
+    filter: blur(8px); /* small blur for glow (instead of 40px) */
+}
+
+/* Different colors */
+.siri-circle span:nth-child(1) {
+    background: radial-gradient(circle, rgba(0,122,255,0.9), transparent 70%);
+    animation-delay: 0s;
+}
+.siri-circle span:nth-child(2) {
+    background: radial-gradient(circle, rgba(52,199,89,0.9), transparent 70%);
+    animation-delay: 2s;
+}
+.siri-circle span:nth-child(3) {
+    background: radial-gradient(circle, rgba(255,45,85,0.9), transparent 70%);
+    animation-delay: 4s;
+}
+.siri-circle span:nth-child(4) {
+    background: radial-gradient(circle, rgba(90,200,250,0.9), transparent 70%);
+    animation-delay: 1s;
+}
+
+/* Billowy animation */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(0.8) translate(0, 0);
+        opacity: 0.6;
+    }
+    25% {
+        transform: scale(1.2) translate(20px, -10px);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1) translate(-15px, 15px);
+        opacity: 0.7;
+    }
+    75% {
+        transform: scale(1.3) translate(10px, 20px);
+        opacity: 0.9;
+    }
 }
