@@ -1,25 +1,33 @@
 import { DeviceFrameset } from 'react-device-frameset';
 import 'react-device-frameset/styles/marvel-devices.min.css';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+
 import './App.css';
 
 function App() {
     const [currentScreen, setCurrentScreen] = useState('hallo');
+    const audioRef = useRef(null);
 
     const navigate = (screen) => {
         setCurrentScreen(screen);
     };
 
+    const playSound = () => {
+        if (audioRef.current) {
+            audioRef.current.play();
+        }
+    };
+
     const screens = {
         hallo: (
-            <div className="screen">
+            <div className="pufo-screen">
                 <h1 className={'hallo'}>Hallo,</h1>
                 <p>ich bin dein iPhone</p>
                 <button onClick={() => navigate('ops')}>Hallo, iPhone</button>
             </div>
         ),
         ops: (
-            <div className="screen">
+            <div className="pufo-screen">
                 <h1>Options, Preferences, Settings</h1>
                 <p>
                   Vielen Dank, dass du dich für ein iPhone entschieden hast.
@@ -39,12 +47,14 @@ function App() {
             </div>
         ),
         uhr1: (
-            <div className="screen">
+            <div className="pufo-screen">
                 <h1>Options, Preferences, Settings</h1>
                 <h2>Uhr</h2>
                 <div>
-                    Möchtest du deine Uhrzeit <br/>
-                    auf dem Kopf lesen?
+                    <p>
+                        Möchtest du deine Uhrzeit <br/>
+                        auf dem Kopf lesen?
+                    </p>
                 </div>
                 <button onClick={() => navigate('uhr2')}>
                     Wie? Also in dem Sinne von... <br/>
@@ -58,11 +68,11 @@ function App() {
             </div>
         ),
         uhr2: (
-            <div className="screen">
+            <div className="pufo-screen">
                 <h1>Options, Preferences, Settings</h1>
                 <h2>Uhr</h2>
                 <div>
-                    Okay. Möchtest du deine Uhrzeit spiegeln?
+                    <p>Okay. Möchtest du deine Uhrzeit spiegeln?</p>
                 </div>
                 <button onClick={() => navigate('uhr3')}>
                     <p>
@@ -79,14 +89,16 @@ function App() {
             </div>
         ),
         uhr3: (
-            <div className="screen">
+            <div className="pufo-screen">
                 <h1>Options, Preferences, Settings</h1>
                 <h2>Uhr</h2>
                 <div>
-                    Möchtest du, dass deine Uhrzeit in Binär angezeigt wird?
+                    <p>Möchtest du, dass deine Uhrzeit in Binär angezeigt wird?</p>
                 </div>
                 <button onClick={() => navigate('uhr4')}>
                     <p>Viele Uhrzeitfragen.</p>
+                </button>
+                <button onClick={() => navigate('uhr4')}>
                     <p>Immerhin bin ich froh, dass du schon auf Deutsch mit mir sprichst.</p>
                 </button>
                 <button onClick={() => navigate('uhr4')}>
@@ -96,7 +108,7 @@ function App() {
             </div>
         ),
         uhr4: (
-            <div className="screen">
+            <div className="pufo-screen">
                 <h1>Options, Preferences, Settings</h1>
                 <h2>Uhr</h2>
                 <div>
@@ -104,31 +116,35 @@ function App() {
                     <p>Also dass da in Worten steht, welche Uhrzeit ist?</p>
                 </div>
                 <button onClick={() => navigate('uhr5')}>
-                    Danke für die Erklärung. <br/>
-                    Nee, auch nicht so gern. <br/>
-                    Danke schön.
+                    <p>
+                        Danke für die Erklärung. <br/>
+                        Nee, auch nicht so gern. <br/>
+                        Dankeschön.
+                    </p>
                 </button>
                 <button onClick={() => navigate('uhr5')}>
-                    Einfach die normale Uhrzeit. <br/>
-                    Also ganz normal, genau gleich, nicht irgendwie gekippt. <br/>
-                    Uhrzeit!
+                    <p>
+                        Einfach die normale Uhrzeit. <br/>
+                        Also ganz normal, genau gleich, nicht irgendwie gekippt. <br/>
+                        Uhrzeit!
+                    </p>
                 </button>
             </div>
         ),
         uhr5: (
-            <div className="screen">
+            <div className="pufo-screen">
                 <h1>Options, Preferences, Settings</h1>
                 <h2>Uhr</h2>
                 <div>
-                    Möchtest du, dass deine Uhrzeit, wie mit einer Sonnenuhr durch so einen Schattenstreifen angezeigt wird?
+                    <p>Möchtest du, dass deine Uhrzeit, wie mit einer Sonnenuhr durch so einen Schattenstreifen angezeigt wird?</p>
                 </div>
-                <button onClick={() => navigate('uhr6')}>
+                <button onClick={() => { navigate('uhr6'); playSound(); } }>
                     <p>Nein, nicht so gern.</p>
                 </button>
-                <button onClick={() => navigate('uhr6')}>
+                <button onClick={() => { navigate('uhr6'); playSound(); } }>
                     <p>Nein, das macht auch gar keinen Sinn. Es ist viel komplizierter zu lesen.</p>
                 </button>
-                <button onClick={() => navigate('uhr6')}>
+                <button onClick={() => { navigate('uhr6'); playSound(); } }>
                     <p>Ganz normale Uhr, bitte. Danke.</p>
                 </button>
             </div>
@@ -136,9 +152,9 @@ function App() {
         uhr6: (
             <div className="screen-centered">
                 <h1 className="hallo line-1_5">
-                    Manche <br />
-                    mögen <br />
-                    das
+                    <span className="line">Manche</span><br/>
+                    <span className="line">mögen</span><br/>
+                    <span className="line">das</span>
                 </h1>
 
                 <div className="siri-wrapper">
@@ -158,6 +174,7 @@ function App() {
             <DeviceFrameset device="iPhone X" color="black" landscape={false}>
                 <div className="app-content">
                     {screens[currentScreen]}
+                    <audio ref={audioRef} src="/UFO476_Nano_manche_moegen_das.mp3" preload="auto" />
                 </div>
             </DeviceFrameset>
         </div>
