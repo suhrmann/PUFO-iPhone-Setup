@@ -177,6 +177,10 @@ function App() {
                     <audio ref={audioRef} src="/UFO476_Nano_manche_moegen_das.mp3" preload="auto" />
                 </div>
             </DeviceFrameset>
+            <div style={{ fontSize: 'x-small' }}>
+                <br/>
+                Webentwicklung: SUhrmann, Idee und Sound: Florentin Will, <a href="https://www.daspodcastufo.com">DAS PODCAST UFO</a>, Episode <i>UFO476 Nano</i>, (c) iPhone Apple Inc.
+            </div>
         </div>
     );
 }
