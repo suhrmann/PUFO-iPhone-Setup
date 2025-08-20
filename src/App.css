@@ -6,7 +6,7 @@
 
 /* background and center device */
 #root {
-    height: 103vh;
+    min-height: 103vh;
     width: 100vw;
     text-align: center;
     background: linear-gradient(125deg, hsla(160.24,44.57%,63.92%,1) 0%, hsla(332.2,44.57%,63.92%,1) 100%);
